@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\EnvioController;
-
+use App\Mail\ContactanosMail;
+use Illuminate\Support\Facades\Mail;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,6 +26,7 @@ Route::get("productos/pdf",[ProductoController::class, 'listadoPdf'])->name("pro
 Route::resource('productos', 'App\Http\Controllers\ProductoController');
 Route::get("clientes/qr/{clientes}",[ClienteController::class, 'qr'])->name("clientes.qr");
 Route::get("clientes/pdf",[ClienteController::class, 'listadoPdf'])->name("clientes.pdf");
+Route::get("clientes/email/{clientes}",[ClienteController::class, 'enviaremail'])->name("clientes.email");
 Route::resource('clientes', 'App\Http\Controllers\ClienteController');
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

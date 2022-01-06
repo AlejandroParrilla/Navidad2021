@@ -7,6 +7,8 @@ use App\Models\Producto;
 use Illuminate\Http\Request;
 use PDF;
 use App\Rules\dni;
+use App\Mail\ContactanosMail;
+use Illuminate\Support\Facades\Mail;
 
 class ClienteController extends Controller
 {
@@ -18,6 +20,12 @@ class ClienteController extends Controller
     public function qr(Cliente $clientes){
 		return view("clientes.qr",compact("clientes"));
 	}
+    
+    public function enviaremail(Cliente $clientes){
+        $correo= new ContactanosMail;
+        Mail::to('alejandroglp20@gmail.com')->send($correo);
+        return redirect('/clientes');
+   }
 	public function listadoPdf(){
 		 $clientes=Cliente::orderBy("id")->limit(100)->get();
 		 $pdf = PDF::loadView('clientes.pdf',compact("clientes"));

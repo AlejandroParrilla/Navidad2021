@@ -5,7 +5,7 @@
 <h1>Clientes</h1>
 <table id="tabla" class="ui olive table">
 	<thead>
-		<tr><th>ID</th><th>Nombre</th><th>Apellidos</th><th>Direccion</th><th>Telefono</th><th>Dni</th><th>Fecha nacimiento</th><th>Edad</th><th></th><th></th><th></th><th></th></tr>
+		<tr><th>ID</th><th>Nombre</th><th>Apellidos</th><th>Direccion</th><th>Telefono</th><th>Dni</th><th>Fecha nacimiento</th><th>Edad</th><th></th><th></th><th></th><th></th><th></th></tr>
 	</thead>
 	<tbody>
 	@foreach($clientes as $cliente)
@@ -21,6 +21,7 @@
             <td><a href='{{url("clientes/$cliente->id")}}'><img class='btn_mostrar' width="32px" src="https://cdn-icons-png.flaticon.com/512/1472/1472457.png"></a></td>
             <td><a href='{{url("clientes/$cliente->id/edit")}}'><img class='btn_editar' width="28px" src="https://images.squarespace-cdn.com/content/v1/5cf53269b251530001a68133/1565187979811-I64YEN86F8QBIB7KFASX/design_icon_wht_sm.png"></a></td>
 		    <td><a href='{{url("clientes/qr")}}/{{$cliente->id}}'><img class='btn_qr' width="25px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/QR_icon.svg/1024px-QR_icon.svg.png"></a></td>
+			<td><a href='{{url("clientes/email")}}/{{$cliente->id}}'><img class='btn_email' width="25px" src="https://nutripur.com/wp-content/uploads/2019/08/email-logo.png"></a></td>
             <td><img class='btn_borrar' width="26px" src="https://cdn2.iconfinder.com/data/icons/designers-and-developers-icon-set/32/recyclebin-512.png"></td>
 		</tr>
 	@endforeach
@@ -45,9 +46,9 @@
     </div>
   </div>
 </div>
-
 <script>
 	$(document).ready(function(){
+		
 		$("#tabla").DataTable({
 			language: { url: "https://cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json" },
 		});
